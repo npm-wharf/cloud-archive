@@ -5,3 +5,5 @@ package-lock.json
 data.yml
 private.key
 metrics.tgz
+archive
+info.json
