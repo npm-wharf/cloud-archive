@@ -38,7 +38,7 @@ function backupFrom (config, glob, tar, bucket, patterns = config.patterns) {
           )
       },
       e => {
-        const msg = `File selection for backup from '${dataPath}' with the pattern '${patterns.join(', ')}' failed with ${e.message}`
+        const msg = `File selection for backup from '${dataPath}' with the pattern '${patterns.join(', ')}' failed with ${e.stack}`
         const err = new Error(msg)
         log.error(msg)
         throw err

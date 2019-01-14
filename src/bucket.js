@@ -147,7 +147,7 @@ function getLifecycle (api, config) {
         } else {
           resolve(parseLifecycle(response.body || response))
         }
-      }).bind(bucket)
+      })
     })
   } else {
     return new Promise((resolve, reject) => {

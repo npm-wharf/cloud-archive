@@ -90,7 +90,7 @@ describe('Backup', function () {
       it('should reject with error', function () {
         return backup.backupFrom()
           .should.be.rejectedWith(
-            `File selection for backup from '${LOCAL_PATH}/spec/tmp' with the pattern '**/*' failed with alas`
+            new RegExp(`File selection for backup from '${LOCAL_PATH}\\/spec\\/tmp' with the pattern '\\*\\*\\/\\*' failed with Error: alas.*`)
           )
       })
 
