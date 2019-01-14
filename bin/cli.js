@@ -1,4 +1,3 @@
-#!/usr/bin/env node 
 const { backupFrom, restoreTo } = require('../src/index.js')
 console.log(process.argv, 'ARGUMENTS')
 
