@@ -1,5 +1,6 @@
 const fs = require('fs')
 const path = require('path')
+const glob = require('globulesce')
 const mkdirp = require('mkdirp')
 const log = require('bole')('backup')
 const { DateTime } = require('luxon')
@@ -9,7 +10,7 @@ const DATE_TIME = `yyyy-MM-dd_HH:mm:ss`
 const DATE = `yyyy-MM-dd`
 const TIME = `HH:mm:ss`
 
-function backupFrom (config, glob, tar, bucket, patterns = config.patterns) {
+function backupFrom (config, tar, bucket, patterns = config.patterns) {
   const dataPath = getDataPath(config)
   if (!fs.existsSync(dataPath)) {
     mkdirp.sync(dataPath)
