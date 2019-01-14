@@ -3,6 +3,9 @@
   "version": "1.1.1",
   "description": "a library to handle backup to and restore from cloud vendor object stores (s3, gcs)",
   "main": "./src/index",
+  "bin": {
+    "cloud-archive": "./bin/cli.js"
+  },
   "scripts": {
     "release": "standard-version",
     "pretest": "standard",
