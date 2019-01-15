@@ -34,7 +34,7 @@ describe('Backup', function () {
   describe('when getting file name', function () {
     it('should get default', function () {
       let backup = Backup({
-        fileName: 'archive_<%=date%>'
+        fileName: 'archive_{{date}}'
       })
       let date = now.toFormat(DATE)
       backup.getFileName().should.eql(`archive_${date}`)
@@ -42,7 +42,7 @@ describe('Backup', function () {
 
     it('should get date based template', function () {
       let backup = Backup({
-        fileName: 'my-file-name-<%=date%>.tgz'
+        fileName: 'my-file-name-{{date}}.tgz'
       })
       let date = now.toFormat(DATE)
       backup.getFileName().should.eql(`my-file-name-${date}.tgz`)
@@ -50,7 +50,7 @@ describe('Backup', function () {
 
     it('should get time based template', function () {
       let backup = Backup({
-        fileName: 'my-file-name-<%=time%>.tgz'
+        fileName: 'my-file-name-{{time}}.tgz'
       })
       let time = now.toFormat(TIME)
       backup.getFileName().should.eql(`my-file-name-${time}.tgz`)
@@ -58,7 +58,7 @@ describe('Backup', function () {
 
     it('should get datetime based template', function () {
       let backup = Backup({
-        fileName: 'my-file-name-<%=dateTime%>.tgz'
+        fileName: 'my-file-name-{{dateTime}}.tgz'
       })
       let dateTime = now.toFormat(DATE_TIME)
       backup.getFileName().should.eql(`my-file-name-${dateTime}.tgz`)
@@ -241,7 +241,7 @@ describe('Backup', function () {
         backup = Backup({
           basePath: './spec',
           dataPath: 'tmp',
-          fileName: 'tar-<%=dateTime%>.tgz',
+          fileName: 'tar-{{dateTime}}.tgz',
           patterns: ['**/*']
         }, globulesce.glob, tar, bucket)
       })

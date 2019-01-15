@@ -640,7 +640,7 @@ describe('Bucket', function () {
             ]})
 
           bucket = Bucket(s3API, {
-            fileName: 'archive-<%=date%>.tgz',
+            fileName: 'archive-{{date}}.tgz',
             storage: {
               bucket: 'test-bucket'
             }
@@ -1265,7 +1265,7 @@ describe('Bucket', function () {
             .rejects(new Error('nope'))
 
           bucket = Bucket(gsAPI, {
-            fileName: 'archive-<%=date%>.tgz',
+            fileName: 'archive-{{date}}.tgz',
             storage: {
               bucket: 'test-bucket'
             }
@@ -1304,7 +1304,7 @@ describe('Bucket', function () {
             .resolves([])
 
           bucket = Bucket(gsAPI, {
-            fileName: 'archive-<%=date%>.tgz',
+            fileName: 'archive-{{date}}.tgz',
             storage: {
               bucket: 'test-bucket'
             }
@@ -1367,7 +1367,7 @@ describe('Bucket', function () {
             ])
 
           bucket = Bucket(gsAPI, {
-            fileName: 'archive-<%=date%>.tgz',
+            fileName: 'archive-{{date}}.tgz',
             storage: {
               bucket: 'test-bucket'
             }
