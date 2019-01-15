@@ -34,7 +34,7 @@ function unzipFiles (dataPath, tarball) {
 }
 
 function zipFiles (relativePath, files, archive) {
-  const tgzFile = path.join(process.cwd(), archive)
+  const tgzFile = path.join(process.cwd(), archive.replace(new RegExp(path.sep, 'g'), '_'))
   return tar.c(
     {
       gzip: true,
@@ -46,7 +46,7 @@ function zipFiles (relativePath, files, archive) {
   ).then(
     () => {
       log.info(`Created tarball with files '${files.join(', ')}'`)
-      return tgzFile
+      return { escaped: tgzFile, destination: archive }
     },
     err => {
       log.error(`Failed to create tarball for files - '${files.join(', ')}' with error:\n\t${err.message}`)

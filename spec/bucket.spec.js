@@ -73,7 +73,6 @@ describe('Bucket', function () {
         })
 
         it('should be rejected with error', function () {
-          console.log(result.stack)
           expect(result.message).to.equal(
             `Could not download tarball 'metrics.tgz':\n\tohno`
           )
@@ -149,7 +148,7 @@ describe('Bucket', function () {
             })
             .returns(uploads)
 
-          bucket.uploadFile(fullPath)
+          bucket.uploadFile({ escaped: fullPath, destination: 'metrics.tgz' })
             .then(
               null,
               err => { result = err }
@@ -189,7 +188,7 @@ describe('Bucket', function () {
             })
             .returns(uploads)
 
-          bucket.uploadFile(fullPath)
+          bucket.uploadFile({ escaped: fullPath, destination: 'metrics.tgz' })
             .then(
               x => { result = x }
             )
@@ -201,7 +200,10 @@ describe('Bucket', function () {
         it('should resolve with metadata', function () {
           expect(result).to.eql({
             dir: path.dirname(fullPath),
-            file: fullPath
+            file: {
+              escaped: fullPath,
+              destination: 'metrics.tgz'
+            }
           })
           s3Mock.verify()
         })
@@ -774,10 +776,10 @@ describe('Bucket', function () {
             .returns(gsBucket)
           bucketMock
             .expects('upload')
-            .withArgs(fullPath)
+            .withArgs(fullPath, { destination: 'metrics.tgz' })
             .rejects(new Error('ohno'))
 
-          return bucket.uploadFile(fullPath)
+          return bucket.uploadFile({ escaped: fullPath, destination: 'metrics.tgz' })
             .then(
               null,
               err => { result = err }
@@ -810,10 +812,10 @@ describe('Bucket', function () {
             .returns(gsBucket)
           bucketMock
             .expects('upload')
-            .withArgs(fullPath)
+            .withArgs(fullPath, { destination: 'metrics.tgz' })
             .resolves({})
 
-          return bucket.uploadFile(fullPath)
+          return bucket.uploadFile({ escaped: fullPath, destination: 'metrics.tgz' })
           .then(
             x => { result = x }
           )
@@ -822,7 +824,10 @@ describe('Bucket', function () {
         it('should return undefined', function () {
           result.should.eql({
             dir: path.dirname(fullPath),
-            file: fullPath
+            file: {
+              escaped: fullPath,
+              destination: 'metrics.tgz'
+            }
           })
           gsMock.verify()
           bucketMock.verify()

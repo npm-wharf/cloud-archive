@@ -285,37 +285,36 @@ function sortByDate (a, b) {
 }
 
 function uploadFile (api, config, file) {
-  const dir = path.dirname(file)
+  const dir = path.dirname(file.escaped)
   if (api.gs) {
     return api.gs
       .bucket(config.storage.bucket)
-      .upload(file)
+      .upload(file.escaped, { destination: file.destination })
       .then(
         () => {
-          log.info(`Uploaded tarball '${file}' to bucket '${config.storage.bucket}' successfully`)
+          log.info(`Uploaded tarball '${file.destination}' to bucket '${config.storage.bucket}' successfully`)
           return { file, dir }
         },
         err => {
-          log.info(`Could not upload tarball '${file}' to bucket '${config.storage.bucket}':\n\t${err.message}`)
+          log.info(`Could not upload tarball '${file.destination}' to bucket '${config.storage.bucket}':\n\t${err.message}`)
           throw err
         }
       )
   } else {
     return new Promise((resolve, reject) => {
-      const fileName = path.basename(file)
       const upload = api.s3.uploadFile({
-        localFile: file,
+        localFile: file.escaped,
         s3Params: {
           Bucket: config.storage.bucket,
-          Key: fileName
+          Key: file.destination
         }
       })
       upload.on('error', err => {
-        log.info(`Could not upload tarball '${file}' to bucket '${config.storage.bucket}':\n\t${err.message}`)
+        log.info(`Could not upload tarball '${file.destination}' to bucket '${config.storage.bucket}':\n\t${err.message}`)
         reject(err)
       })
       upload.on('end', () => {
-        log.info(`Uploaded tarball '${file}' to bucket '${config.storage.bucket}' successfully`)
+        log.info(`Uploaded tarball '${file.destination}' to bucket '${config.storage.bucket}' successfully`)
         resolve({ file, dir })
       })
     })
