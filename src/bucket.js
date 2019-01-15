@@ -9,7 +9,7 @@ function downloadFile (api, config, fileName) {
   if (!fs.existsSync(dir)) {
     mkdirp.sync(dir)
   }
-  const file = path.join(dir, fileName)
+  const file = path.join(dir, fileName.replace(new RegExp(path.sep, 'g'), '_'))
   if (api.gs) {
     log.info(`Attempting to download '${fileName}' from '${config.storage.bucket}'`)
     return api.gs
@@ -100,7 +100,7 @@ function getLatestFile (api, config) {
       .bucket(config.storage.bucket)
       .getFiles(options)
       .then(
-        files => {
+        ([files]) => {
           files.sort(sortByDate)
           return files.length ? files[0].name : undefined
         },

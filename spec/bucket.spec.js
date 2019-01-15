@@ -1306,7 +1306,7 @@ describe('Bucket', function () {
               autoPaginate: false,
               prefix: 'archive-'
             })
-            .resolves([])
+            .resolves([[]])
 
           bucket = Bucket(gsAPI, {
             fileName: 'archive-{{date}}.tgz',
@@ -1343,7 +1343,7 @@ describe('Bucket', function () {
               autoPaginate: false,
               prefix: 'archive-'
             })
-            .resolves([
+            .resolves([[
               {
                 name: 'archive-2018-05-29_03:00:00.tgz',
                 timeCreated: '2018-05-29T03:00:00Z',
@@ -1369,7 +1369,7 @@ describe('Bucket', function () {
                 timeCreated: '2018-05-25T03:00:00Z',
                 updated: '2018-05-31T03:00:00Z'
               }
-            ])
+            ]])
 
           bucket = Bucket(gsAPI, {
             fileName: 'archive-{{date}}.tgz',
