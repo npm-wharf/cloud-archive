@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="2.0.1"></a>
+## [2.0.1](https://github.com/npm-wharf/cloud-archive/compare/v2.0.0...v2.0.1) (2019-01-15)
+
+
+### Bug Fixes
+
+* download files correctly ([b6dcea6](https://github.com/npm-wharf/cloud-archive/commit/b6dcea6))
+
+
+
 <a name="2.0.0"></a>
 # [2.0.0](https://github.com/npm-wharf/cloud-archive/compare/v1.1.2...v2.0.0) (2019-01-15)
 
