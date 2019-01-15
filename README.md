@@ -10,7 +10,7 @@ A module to help with the task of archiving data tarballed, gzipped data to an o
 Endpoints and connection configuration are set via environment variables:
 
  * `OBJECT_STORE` - the object store where tasks and grafs are stored and retrieved from
- * `FILE_NAME_FORMAT` - uses templating to specify a pattern for creating tarball names. Tokens are escaped with `<%=` `%>`.
+ * `FILE_NAME_FORMAT` - uses templating to specify a pattern for creating tarball names. Tokens are escaped with `{{` `}}`.
     * All dates and times for tokens are UTC
       * `dateTime` - provides date and time: `mm_dd_yy_HH_MM_SS`
       * `date` - provides date: `mm_dd_yy`

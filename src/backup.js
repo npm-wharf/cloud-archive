@@ -4,6 +4,8 @@ const mkdirp = require('mkdirp')
 const log = require('bole')('backup')
 const { DateTime } = require('luxon')
 const template = require('lodash.template')
+const templateSettings = require('lodash.templatesettings')
+templateSettings.interpolate = /{{([\s\S]+?)}}/g
 
 const DATE_TIME = `yyyy-MM-dd_HH:mm:ss`
 const DATE = `yyyy-MM-dd`

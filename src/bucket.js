@@ -79,7 +79,7 @@ function enforceLifecycle (api, config) {
 
 function getFilePrefix (fileName) {
   if (fileName) {
-    let [prefix] = fileName.split('<%')
+    let [prefix] = fileName.split('{{')
     return prefix
   } else {
     return ''
