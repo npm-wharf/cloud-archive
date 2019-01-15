@@ -67,8 +67,6 @@ On success, the resulting data structure looks like:
 ## TODO
 
 - GS_USER_KEY expects PEM, not JSON key
-- mkdirp the folder locally before updating
-- use the full path in google/s3 storage
 - 
 
 [travis-url]: https://travis-ci.org/npm-wharf/k8s-tickbot

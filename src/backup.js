@@ -122,8 +122,8 @@ function uploadTarball (config, bucket, tgz) {
     .then(
       () => {
         log.info(`Backup completed successfully.`)
-        if (fs.existsSync(tgz)) {
-          fs.unlinkSync(tgz)
+        if (fs.existsSync(tgz.escaped)) {
+          fs.unlinkSync(tgz.escaped)
         }
         return {}
       },
@@ -131,8 +131,8 @@ function uploadTarball (config, bucket, tgz) {
         const msg = `Failed to upload tarball to configured object store. Backup has failed. ${e.stack}`
         const err = new Error(msg)
         log.error(msg)
-        if (fs.existsSync(tgz)) {
-          fs.unlinkSync(tgz)
+        if (fs.existsSync(tgz.escaped)) {
+          fs.unlinkSync(tgz.escaped)
         }
         throw err
       }

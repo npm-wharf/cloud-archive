@@ -221,14 +221,14 @@ describe('Backup', function () {
             `${LOCAL_PATH}/spec/tmp/two.txt`,
             `${LOCAL_PATH}/spec/tmp/info.json`
           ], `tar-${now.toFormat(DATE_TIME)}.tgz`)
-          .resolves(`./spec/tar-${now.toFormat(DATE_TIME)}.tgz`)
+          .resolves({ escaped: `./spec/tar-${now.toFormat(DATE_TIME)}.tgz`, destination: `tar-${now.toFormat(DATE_TIME)}.tgz` })
 
         bucketMock.expects('enforceLifecycle')
           .once()
           .resolves()
 
         bucketMock.expects('uploadFile')
-          .withArgs(`./spec/tar-${now.toFormat(DATE_TIME)}.tgz`)
+          .withArgs({ escaped: `./spec/tar-${now.toFormat(DATE_TIME)}.tgz`, destination: `tar-${now.toFormat(DATE_TIME)}.tgz` })
           .resolves({
             dir: `${LOCAL_PATH}/spec/`,
             files: [
@@ -249,7 +249,7 @@ describe('Backup', function () {
       it('should return tarball metadata', function () {
         return backup.backupFrom()
           .should.eventually.eql({
-            tar: `./spec/tar-${now.toFormat(DATE_TIME)}.tgz`,
+            tar: { escaped: `./spec/tar-${now.toFormat(DATE_TIME)}.tgz`, destination: `tar-${now.toFormat(DATE_TIME)}.tgz` },
             files: [
               `${LOCAL_PATH}/spec/tmp/one.txt`,
               `${LOCAL_PATH}/spec/tmp/two.txt`
