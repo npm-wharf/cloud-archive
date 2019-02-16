@@ -164,7 +164,12 @@ function zipFiles (config, tar, bucket, files) {
   return tar.zipFiles(dataPath, list, archive)
 }
 
-module.exports = function (config, glob, tar, bucket) {
+module.exports = function (
+    config = require('./config'),
+    glob = require('globulesce'),
+    tar = require('./tar'),
+    bucket = require('./bucket')
+  ) {
   return {
     backupFrom: backupFrom.bind(null, config, glob, tar, bucket),
     getFileName: getFileName.bind(null, config),

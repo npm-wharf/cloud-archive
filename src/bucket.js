@@ -101,8 +101,13 @@ function getLatestFile (api, config) {
       .getFiles(options)
       .then(
         ([files]) => {
-          files.sort(sortByDate)
-          return files.length ? files[0].name : undefined
+          const sorted = files.map(f => {
+            return {
+              ...f,
+              ...f.metadata
+            }
+          }).sort(sortByDate)
+          return sorted.length ? sorted[0].name : undefined
         },
         e => {
           const msg = `Could not determine latest file from bucket '${config.storage.bucket}':\n\t${e.message}`
@@ -321,7 +326,7 @@ function uploadFile (api, config, file) {
   }
 }
 
-module.exports = function (api, config) {
+module.exports = function (api = require('./bucketApi'), config = require('./config')) {
   return {
     downloadFile: downloadFile.bind(null, api, config),
     enforceLifecycle: enforceLifecycle.bind(null, api, config),

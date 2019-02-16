@@ -1346,28 +1346,38 @@ describe('Bucket', function () {
             .resolves([[
               {
                 name: 'archive-2018-05-29_03:00:00.tgz',
-                timeCreated: '2018-05-29T03:00:00Z',
-                updated: undefined
+                metadata: {
+                  timeCreated: '2018-05-29T03:00:00Z',
+                  updated: undefined
+                }
               },
               {
                 name: 'archive-2018-05-28_03:00:00.tgz',
-                timeCreated: '2018-05-26T03:00:00Z',
-                updated: '2018-05-28T03:00:00Z'
+                metadata: {
+                  timeCreated: '2018-05-26T03:00:00Z',
+                  updated: '2018-05-28T03:00:00Z'
+                }
               },
               {
                 name: 'archive-2018-06-01_03:00:00.tgz',
-                timeCreated: '2018-05-24T03:00:00Z',
-                updated: '2018-06-01T03:00:00Z'
+                metadata: {
+                  timeCreated: '2018-05-24T03:00:00Z',
+                  updated: '2018-06-01T03:00:00Z'
+                }
               },
               {
                 name: 'archive-2018-05-30_03:00:00.tgz',
-                timeCreated: '2018-05-27T03:00:00Z',
-                updated: '2018-05-30T03:00:00Z'
+                metadata: {
+                  timeCreated: '2018-05-27T03:00:00Z',
+                  updated: '2018-05-30T03:00:00Z'
+                }
               },
               {
                 name: 'archive-2018-05-31_03:00:00.tgz',
-                timeCreated: '2018-05-25T03:00:00Z',
-                updated: '2018-05-31T03:00:00Z'
+                metadata: {
+                  timeCreated: '2018-05-25T03:00:00Z',
+                  updated: '2018-05-31T03:00:00Z'
+                }
               }
             ]])
 
